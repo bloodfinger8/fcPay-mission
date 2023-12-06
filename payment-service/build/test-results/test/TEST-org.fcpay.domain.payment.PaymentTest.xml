@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.fcpay.domain.payment.PaymentTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-12-06T16:09:57" hostname="yangjaeuui-MacBook-Pro-16.local" time="0.001">
-  <properties/>
-  <testcase name="한번 결제된 요청은 다시 성공할 수 없다." classname="org.fcpay.domain.payment.PaymentTest" time="0.0"/>
-  <testcase name="결제 완료시 상태값이 완료로 변경된다." classname="org.fcpay.domain.payment.PaymentTest" time="0.0"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
