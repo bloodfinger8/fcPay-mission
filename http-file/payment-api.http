@@ -1,0 +1,20 @@
+### 충전
+POST http://localhost:8080/charge
+Content-Type: application/json
+X-TEMP-USER-ID: jaewoo
+
+{
+  "chargeAmount": 12000
+}
+
+
+### 결제
+POST http://localhost:8080/pay
+Content-Type: application/json
+X-TEMP-USER-ID: jaewoo
+
+{
+  "paymentId": 1,
+  "payAmount" : 5000,
+  "franchiseeId": 1
+}

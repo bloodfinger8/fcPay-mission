@@ -1,5 +1,7 @@
 package org.fcpay.service
 
+import org.fcpay.controller.fcpay.response.ChargingResponse
+import org.fcpay.controller.fcpay.response.PayResponse
 import org.fcpay.domain.fcpay.FcPay
 import org.fcpay.domain.fcpay.FcPayRepository
 import org.fcpay.domain.fcpay.event.ChargingPayAlertEvent
@@ -31,7 +33,7 @@ class PayUseCase (
     private val eventPublisher: ApplicationEventPublisher
 ){
     @Transactional
-    fun pay(cmd: PayCommand): Boolean {
+    fun pay(cmd: PayCommand): PayResponse {
         val payment = paymentRepository.find(cmd.paymentId) ?: throw EntityNotFoundException(PaymentRepository::class, cmd.paymentId.toString())
         val fcPay = fcPayRepository.find(cmd.userId) ?: throw EntityNotFoundException(Franchisee::class, cmd.userId)
         fcPay.pay(cmd.payAmount, payment)
@@ -39,14 +41,16 @@ class PayUseCase (
         val franchisee = franchiseeRepository.find(cmd.franchiseeId) ?: throw EntityNotFoundException(Franchisee::class, cmd.franchiseeId.toString())
         slipRepository.save(franchisee.requestPayment(cmd.payAmount, fcPay, payment))
 
-        return true
+        return PayResponse(fcPay.amount)
     }
 
     @Transactional
-    fun charge(cmd: ChargeCommand): Boolean {
+    fun charge(cmd: ChargeCommand): ChargingResponse {
         val fcPay = fcPayRepository.find(cmd.userId) ?: throw EntityNotFoundException(FcPay::class, cmd.userId)
+
         val res = payChargingDomainService.chargeProcess(firmBakingHandler, fcPay, cmd.chargeAmount, firmBankingHistoryRepository)
         eventPublisher.publishEvent(ChargingPayAlertEvent(cmd.userId, res.chargedPay, res.result))
-        return true
+
+        return ChargingResponse(fcPay.amount)
     }
 }

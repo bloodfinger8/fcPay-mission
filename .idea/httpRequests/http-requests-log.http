@@ -1,0 +1,52 @@
+POST http://localhost:8080/pay
+Content-Type: application/json
+X-USER-ID: jaewoo
+Content-Length: 63
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "paymentId": 1,
+  "payAmount" : 5000,
+  "franchiseeId": 1
+}
+
+<> 2023-12-08T171642.200.json
+
+###
+
+POST http://localhost:8080/pay
+Content-Type: application/json
+X-USER-ID: jaewoo
+Content-Length: 63
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "paymentId": 1,
+  "payAmount" : 5001,
+  "franchiseeId": 1
+}
+
+<> 2023-12-08T171635.400.json
+
+###
+
+POST http://localhost:8080/charge
+Content-Type: application/json
+X-USER-ID: jaewoo
+Content-Length: 27
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "chargeAmount": 12000
+}
+
+<> 2023-12-08T171530.200.json
+
+###
+
