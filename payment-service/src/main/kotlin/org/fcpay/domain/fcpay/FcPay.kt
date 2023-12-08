@@ -2,6 +2,7 @@ package org.fcpay.domain.fcpay
 
 import jakarta.persistence.*
 import org.fcpay.domain.BaseTimeEntity
+import org.fcpay.domain.payment.Payment
 import java.time.LocalDateTime
 
 @Entity
@@ -19,8 +20,9 @@ class FcPay (
         return amount >= payAmount
     }
 
-    fun pay(amount: Long) {
+    fun pay(amount: Long, payment: Payment) {
         require(canPayMoney(amount)) { "결제 금액이 부족합니다." }
+        payment.complete()
         this.amount -= amount
     }
 

@@ -11,7 +11,8 @@ class PayChargingDomainServiceTest: FunSpec({
             payChargingDomainService.chargeProcess(
                 firmBakingHandler = FirmBankingSpy(),
                 fcPay = FcPay("test", 1000),
-                chargeAmount = 1000
+                chargeAmount = 1000,
+                firmBankingHistoryRepository = FirmBankingHistoryRepositorySpy()
             )
         }
     }

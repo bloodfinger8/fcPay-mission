@@ -33,10 +33,8 @@ class PayUseCase (
     @Transactional
     fun pay(cmd: PayCommand): Boolean {
         val payment = paymentRepository.find(cmd.paymentId) ?: throw EntityNotFoundException(PaymentRepository::class, cmd.paymentId.toString())
-        payment.complete()
-
         val fcPay = fcPayRepository.find(cmd.userId) ?: throw EntityNotFoundException(Franchisee::class, cmd.userId)
-        fcPay.pay(cmd.payAmount)
+        fcPay.pay(cmd.payAmount, payment)
 
         val franchisee = franchiseeRepository.find(cmd.franchiseeId) ?: throw EntityNotFoundException(Franchisee::class, cmd.franchiseeId.toString())
         slipRepository.save(franchisee.requestPayment(cmd.payAmount, fcPay, payment))
@@ -47,8 +45,7 @@ class PayUseCase (
     @Transactional
     fun charge(cmd: ChargeCommand): Boolean {
         val fcPay = fcPayRepository.find(cmd.userId) ?: throw EntityNotFoundException(FcPay::class, cmd.userId)
-        val res = payChargingDomainService.chargeProcess(firmBakingHandler, fcPay, cmd.chargeAmount)
-        firmBankingHistoryRepository.write(FirmBankingHistory.create(res.chargedPay, cmd.userId, res.result))
+        val res = payChargingDomainService.chargeProcess(firmBakingHandler, fcPay, cmd.chargeAmount, firmBankingHistoryRepository)
         eventPublisher.publishEvent(ChargingPayAlertEvent(cmd.userId, res.chargedPay, res.result))
         return true
     }

@@ -19,3 +19,10 @@
   * 금액이 부족하면 결제가 실패할 수 있습니다.
 * 사용자의 인증은 이미 되어있다고 가정하고 사용자의 ID로 대체합니다.
 * 한번 결제가 된 요청은 다시 성공하면 안됩니다.
+
+### 흐름
+* /pay API 
+![pay](md_resource/pay_overview.jpg)
+
+* /charge API
+![charging](md_resource/charging_overview.jpg)
