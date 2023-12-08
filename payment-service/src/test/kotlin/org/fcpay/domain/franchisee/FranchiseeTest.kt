@@ -10,7 +10,9 @@ class FranchiseeTest(): FunSpec({
     test("프랜차이즈 전표와 결제 금액 불일치시 예외 발생") {
         val paymentAmount = 10000L
         val requestAmount = 10002L
-        val franchisee = Franchisee(FranchiseeInfo("test", "address", "010-1234-5678"))
+        val info = FranchiseeInfo("test", "address", "010-1234-5678")
+        val commissionRete = CommissionRate(0.1)
+        val franchisee = Franchisee(info, commissionRete)
 
         assertThrows<IllegalArgumentException> {
             franchisee.requestPayment(

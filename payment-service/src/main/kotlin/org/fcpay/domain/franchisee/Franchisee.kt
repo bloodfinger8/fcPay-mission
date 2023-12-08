@@ -10,7 +10,10 @@ import java.time.LocalDateTime
 @Entity
 class Franchisee (
     @Embedded
-    val franchiseeInfo: FranchiseeInfo
+    val franchiseeInfo: FranchiseeInfo,
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], orphanRemoval = true)
+    val commissionRate: CommissionRate
 ): BaseTimeEntity() {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
