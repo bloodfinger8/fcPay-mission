@@ -70,6 +70,7 @@ build/
 .idea/sonarlint/
 .idea/codeStyles/
 .idea/*.xml
+.idea/httpRequests/**/*.json
 node_modules/
 .rpt2_cache/
 libraries/tools/kotlin-test-js-runner/lib/
