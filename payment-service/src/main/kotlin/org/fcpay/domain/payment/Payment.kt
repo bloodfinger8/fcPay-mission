@@ -30,9 +30,8 @@ class Payment(
     }
 
     private fun isCanBeCompleted() {
-        // TODO : 상태값 변화에 대한 조건을 고도화 해야한다.
-        if (this.paymentStatus == PaymentStatus.PAYMENT_COMPLETED) {
-            throw IllegalArgumentException("이미 결제된 요청입니다.")
+        if(!this.paymentStatus.canNext(PaymentStatus.PAYMENT_COMPLETED)) {
+            throw IllegalArgumentException("결제가 완료되지 않은 요청입니다.")
         }
     }
 
