@@ -71,6 +71,7 @@ build/
 .idea/codeStyles/
 .idea/*.xml
 .idea/httpRequests/**/*.json
+.idea/httpRequests/*.xml
 node_modules/
 .rpt2_cache/
 libraries/tools/kotlin-test-js-runner/lib/
