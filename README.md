@@ -5,6 +5,7 @@
 * Spring boot 3.2 , Spring-data-jpa 3.2.0
 * Kotlin 1.9.20 , JDK 17
 * KoTest
+    * 인텔리제이 플러그인 설치 권장
 * Gradle 8.5
 * H2 Database
 
