@@ -6,6 +6,7 @@ plugins {
 	kotlin("jvm") version "1.9.20"
 	kotlin("plugin.spring") version "1.9.20" apply false
 	kotlin("plugin.jpa") version "1.9.20" apply false
+	id("com.palantir.docker") version "0.35.0" apply false
 }
 
 
