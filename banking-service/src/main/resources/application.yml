@@ -19,7 +19,3 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
-
-server:
-  banking-service:
-    url: http://localhost:8082
