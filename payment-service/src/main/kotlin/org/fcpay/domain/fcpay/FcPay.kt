@@ -3,7 +3,6 @@ package org.fcpay.domain.fcpay
 import jakarta.persistence.*
 import org.fcpay.domain.BaseTimeEntity
 import org.fcpay.domain.payment.Payment
-import java.time.LocalDateTime
 
 @Entity
 class FcPay (
@@ -15,6 +14,9 @@ class FcPay (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private val id: Long? = null
+
+    @Version
+    var version: Int = 0
 
     private fun canPayMoney(payAmount: Long): Boolean {
         return amount >= payAmount
