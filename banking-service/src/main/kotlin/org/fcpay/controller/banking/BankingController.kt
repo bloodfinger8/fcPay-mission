@@ -1,8 +1,11 @@
 package org.fcpay.controller.banking
 
+import org.fcpay.controller.banking.request.BankingChargeRequest
+import org.fcpay.controller.banking.response.BankingChargeResponse
 import org.fcpay.service.BankingUseCase
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestHeader
 import org.springframework.web.bind.annotation.RestController
 
@@ -10,11 +13,12 @@ import org.springframework.web.bind.annotation.RestController
 class BankingController (
     private val useCase: BankingUseCase
 ) {
-    @PostMapping("/banking")
+    @PostMapping("/api/v1/charge")
     fun pay(
-        @RequestHeader("X-TEMP-USER-ID") userId: String
-    ): ResponseEntity<Boolean> {
-        val result = useCase.banking()
+        @RequestHeader("X-TEMP-USER-ID") userId: String,
+        @RequestBody req: BankingChargeRequest
+    ): ResponseEntity<BankingChargeResponse> {
+        val result = useCase.banking(req.amount)
         return ResponseEntity.ok(result)
     }
 }

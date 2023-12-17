@@ -7,7 +7,15 @@
 * KoTest
     * 인텔리제이 플러그인 설치 권장
 * Gradle 8.5
-* H2 Database
+* MySQL 8.0
+  * 최초 실행시 user 권한 등록 필요
+
+### 실행 방법
+* make up - 도커 이미지 생성 및 docker-compose 실행
+  * ./gradlew docker
+  * docker-compose up -d
+* make down - 도커 컨테이너 종료 및 이미지 삭제
+  * docker-compose down --remove-orphans
 
 ### 요구 사항
 * 가맹점에서는 "1만원 결제 요청" 이라는 것을 생성할 수 있습니다.

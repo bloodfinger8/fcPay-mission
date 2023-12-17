@@ -1,10 +1,10 @@
 package org.fcpay.domain.fcpay.service
 
-import org.fcpay.gateway.firmbanking.FirmBakingHandler
-import org.fcpay.gateway.firmbanking.result.FirmBankingResult
+import org.fcpay.gateway.external.firmbanking.FirmBakingHandler
+import org.fcpay.gateway.external.firmbanking.res.FirmBankingChargeResDTO
 
 class FirmBankingSpy: FirmBakingHandler {
-    override fun requestExternalFirmBanking(chargingPay: Long): FirmBankingResult? {
-        return FirmBankingResult(true, chargingPay)
+    override fun requestExternalFirmBanking(amount: Long): FirmBankingChargeResDTO {
+        return FirmBankingChargeResDTO(true, amount.toDouble())
     }
 }

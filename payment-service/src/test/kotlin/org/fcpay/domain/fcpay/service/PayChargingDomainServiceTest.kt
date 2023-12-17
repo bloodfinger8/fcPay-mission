@@ -6,13 +6,15 @@ import org.junit.jupiter.api.assertThrows
 
 class PayChargingDomainServiceTest: FunSpec({
     test("충전 최소 금액 1만원 이하 테스트") {
-        val payChargingDomainService = PayChargingDomainService()
+        val firmBankingSpy = FirmBankingSpy()
+        val historySpy = FirmBankingHistoryRepositorySpy()
+
+        val payChargingDomainService = PayChargingDomainService(firmBankingSpy, historySpy)
+
         assertThrows<IllegalArgumentException> {
             payChargingDomainService.chargeProcess(
-                firmBakingHandler = FirmBankingSpy(),
                 fcPay = FcPay("test", 1000),
-                chargeAmount = 1000,
-                firmBankingHistoryRepository = FirmBankingHistoryRepositorySpy()
+                chargeAmount = 1000
             )
         }
     }

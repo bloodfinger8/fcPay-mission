@@ -1,10 +1,9 @@
 package org.fcpay.common
 
-import org.springframework.stereotype.Component
+import org.springframework.stereotype.Service
 
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.RUNTIME)
-@Component
+@Service
 annotation class DomainService(
-
 )

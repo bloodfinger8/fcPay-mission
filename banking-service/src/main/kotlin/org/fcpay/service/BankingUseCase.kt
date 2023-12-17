@@ -1,14 +1,14 @@
 package org.fcpay.service
 
+import org.fcpay.controller.banking.response.BankingChargeResponse
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-class BankingUseCase (
-){
+class BankingUseCase {
     @Transactional
-    fun banking(): Boolean {
+    fun banking(amount: Long): BankingChargeResponse {
         println("firmbanking charge")
-        return true
+        return BankingChargeResponse(true, amount.toDouble())
     }
 }
